@@ -18,7 +18,7 @@ export default function HourlyForecast({ hours, toDisplayTemp }: HourlyForecastP
   if (hours.length === 0) return null;
 
   const now = new Date();
-  const HOUR_IN_MS = 3_600_000;
+  const MS_PER_HOUR = 3_600_000;
 
   return (
     <div className="card forecast-section">
@@ -28,7 +28,7 @@ export default function HourlyForecast({ hours, toDisplayTemp }: HourlyForecastP
           const d = new Date(h.time);
           const isCurrent =
             i === 0 ||
-            (d.getTime() - now.getTime() < HOUR_IN_MS &&
+            (d.getTime() - now.getTime() < MS_PER_HOUR &&
               d.getTime() >= now.getTime());
           const timeLabel = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
           const { emoji } = getWeatherCode(h.code);

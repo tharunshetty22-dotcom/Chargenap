@@ -16,7 +16,8 @@ export default function DailyForecast({ daily, toDisplayTemp }: DailyForecastPro
       <div className="section-title">7-Day Forecast</div>
       <div className="daily-grid">
         {daily.time.map((dateStr, i) => {
-          const date = new Date(dateStr + 'T12:00:00');
+          const [year, month, day] = dateStr.split('-').map(Number);
+          const date = new Date(year, month - 1, day);
           const dayName = DAY_NAMES[date.getDay()];
           const { emoji, label } = getWeatherCode(daily.weather_code[i]);
           const isToday = i === 0;
