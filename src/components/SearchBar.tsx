@@ -72,7 +72,7 @@ export default function SearchBar({ onSelect }: SearchBarProps) {
       setFocusedIndex(i => Math.min(i + 1, results.length - 1));
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
-      setFocusedIndex(i => Math.max(i - 1, 0));
+      setFocusedIndex(i => (i <= 0 ? -1 : i - 1));
     } else if (e.key === 'Enter' && focusedIndex >= 0) {
       e.preventDefault();
       handleSelect(results[focusedIndex]);
